@@ -19,11 +19,12 @@ class TwelveDays
     "a Partridge in a Pear Tree"
   ]
   def self.song
+    output = []
     WORDS.reverse.each_with_index.inject([]) do |acc, (el, index)|
       if (index < WORDS.size)
         if acc[-1] == nil
           previous_line = ""
-          acc << ("#{el}.")
+          acc << ("#{el}.\n")
         elsif (index == 1)
           previous_line = "and #{acc[-1]}"
           acc << ("#{(index + 1).humanize} #{el}, #{previous_line}")
@@ -31,12 +32,10 @@ class TwelveDays
           previous_line = acc[-1]
           acc << ("#{(index + 1).humanize} #{el}, #{previous_line}")
         end
-        # acc << (previous_line + "On the #{Hundredth.ordinal(index + 1)} #{FIRST_LINE} #{(index + 1).humanize} #{el}.")
+        output << "On the #{Hundredth.ordinal(index + 1)} #{FIRST_LINE} #{acc.last}"
         acc
       end
-    end.each_with_index.inject([]) do |acc, (el, index)|
-      acc << "On the #{Hundredth.ordinal(index + 1)} #{FIRST_LINE} #{el}"
-      acc
-    end.join("\n\n")
+    end
+    output.join("\n")
   end
 end
