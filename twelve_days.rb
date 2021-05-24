@@ -1,6 +1,5 @@
 require 'humanize'
 require "hundredth"
-require 'byebug'
 
 class TwelveDays
   FIRST_LINE = "day of Christmas my true love gave to me:" 
